@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_detail_question"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:text="@string/theme_question"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/layoutResult"
+            android:layout_below="@id/tvTheme"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/content_question"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/layoutResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8CAC9C9" />
+
+            <RadioButton
+                android:id="@+id/btnResult01"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Hoàn toàn sai"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8CAC9C9" />
+
+            <RadioButton
+                android:id="@+id/btnResult02"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Sai"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8CAC9C9" />
+
+            <RadioButton
+                android:id="@+id/btnResult03"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Không đúng cũng không sai"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8CAC9C9" />
+
+            <RadioButton
+                android:id="@+id/btnResult04"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Đúng"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8CAC9C9" />
+
+            <RadioButton
+                android:id="@+id/btnResult05"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Hoàn toàn đúng"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8CAC9C9" />
+        </RadioGroup>
+    </RelativeLayout>
+</layout>
