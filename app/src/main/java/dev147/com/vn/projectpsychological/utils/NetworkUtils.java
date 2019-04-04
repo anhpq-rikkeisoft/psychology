@@ -11,7 +11,7 @@ public class NetworkUtils {
      * @param context
      * @return
      */
-    public static boolean isNetworkAvailable(Context context) {
+    public static boolean hasConnection(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (null == cm) {

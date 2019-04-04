@@ -61,4 +61,10 @@
     <color name="row6_2">#F57C00</color>
     <color name="row6_3">#EF6C00</color>
 
+    <color name="white">@android:color/white</color>
+    <color name="color_text_brown">#61402c</color>
+
+    <color name="color_yellow_shadow">#6ff9e78d</color>
+    <color name="color_yellow_dark">#fffff129</color>
+
 </resources>

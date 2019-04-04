@@ -116,4 +116,11 @@
         <item>Em trội ở lĩnh vực Nghệ thuật: Những người có chỉ số cao ở lĩnh vực này là những người khả năng về trực giác, khả năng tưởng tượng cao, thích làm việc trong các môi trường mang tính ngẫu hứng, không khuôn mẫu. Những chuyên ngành có thể phù hợp với em như: Các ngành về văn chương; báo chí (bình luận viên, dẫn chương trình…); điện ảnh, sân khấu, mỹ thuật, ca nhạc, múa, kiến trúc, thời trang, hội họa, giáo viên dạy sử/Anh văn, bảo tàng, bảo tồn... Em cũng có thể phù hợp với ngành chăm sóc sắc đẹp; Nghệ thuật trình diễn; Thiết kế nội thất; Kiến trúc sư; Nhiếp ảnh….</item>
         <item>Em trội ở lĩnh vực Thuyết phục. Những người có chỉ số cao ở lĩnh vực này là những người không chỉ thích làm việc với người khác, em còn muốn thuyết phục người khác.  Họ có khả năng về kinh doanh, mạnh bạo, dám nghĩ dám làm, có khả năng quản lý. Những chuyên ngành có thể phù hợp với em như: Các ngành về quản trị kinh doanh (quản lý khách sạn, quản trị nhân sự…), thương mại, marketing, kế toán – tài chính, luật sư, dịch vụ khách hàng, tiếp viên hàng không, thông dịch viên, pha chế rượu, kỹ sư kỹ thuật hệ thống công nghiệp, bác sĩ cấp cứu, quy hoạch đô thị, báo chí (phóng viên, biên tập viên…)… Em cũng có thể thành công trong ngành Luật ; Chính trị ; Ngoại thương ;  và Ngân hàng</item>
     </string-array>
+
+
+    <!--dialog-->
+    <string name="notice_dialog_default_ok">OK</string>
+
+    <string name="can_not_connect_to_server">Kết nối tới máy chủ không thành công</string>
+    <string name="retry">Thử kết nối lại</string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Space;
 import android.widget.Toast;
 
 import com.github.ybq.android.spinkit.style.CubeGrid;
@@ -18,17 +19,21 @@ import dev147.com.vn.projectpsychological.data.model.Customer;
 import dev147.com.vn.projectpsychological.databinding.ActivitySplashBinding;
 import dev147.com.vn.projectpsychological.ui.base.BaseActivity;
 import dev147.com.vn.projectpsychological.ui.customer.CustomerViewModel;
+import dev147.com.vn.projectpsychological.ui.dialog.DialogBuilder;
 import dev147.com.vn.projectpsychological.ui.main.MainActivity;
 import dev147.com.vn.projectpsychological.ui.tutorial.TutorialActivity;
 import dev147.com.vn.projectpsychological.utils.DataUtils;
 import dev147.com.vn.projectpsychological.utils.Define;
 import dev147.com.vn.projectpsychological.utils.Fields;
+import dev147.com.vn.projectpsychological.utils.Helpers;
+import dev147.com.vn.projectpsychological.utils.NetworkUtils;
 import dev147.com.vn.projectpsychological.utils.SharedPrefs;
 import dev147.com.vn.projectpsychological.utils.ToastUtils;
 import dev147.com.vn.projectpsychological.utils.Utils;
 
 public class SplashActivity extends BaseActivity<SplashViewModel, ActivitySplashBinding> {
     private CustomerViewModel customerViewModel;
+    private DialogBuilder.NoticeDialog mRetryDialog;
 
     @Override
     protected void initView() {
@@ -36,14 +41,19 @@ public class SplashActivity extends BaseActivity<SplashViewModel, ActivitySplash
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.my_statusbar_color));
         }
+
+        // kiểm tra có kết nội mạng
+        if (NetworkUtils.hasConnection(SplashActivity.this)) {
+            doRequestConfiguration();
+        } else {
+            showRetryConnectionDialog();
+        }
     }
 
-    @Override
-    protected void initData() {
+    private void doRequestConfiguration() {
         CubeGrid stylePro = new CubeGrid();
         binding.progressBar.setIndeterminateDrawable(stylePro);
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SplashViewModel.class);
-        customerViewModel = ViewModelProviders.of(this, viewModelFactory).get(CustomerViewModel.class);
+        binding.progressBar.setVisibility(View.VISIBLE);
         User user = Utils.getUser();
         if (!user.isEmpty()) {
             customerViewModel.getCustomerByEmail(user.getEmail(), user.getPass());
@@ -51,6 +61,55 @@ public class SplashActivity extends BaseActivity<SplashViewModel, ActivitySplash
             // saveQuestionInDB();
             loadQuestion();
         }
+    }
+
+    private void showRetryConnectionDialog() {
+        boolean dialogShown = mRetryDialog != null && mRetryDialog.getDialog() != null
+                && mRetryDialog.getDialog().isShowing();
+        if (!dialogShown) {
+            mRetryDialog = DialogBuilder.NoticeDialog.newInstance(
+                    getResources().getString(R.string.can_not_connect_to_server),
+                    getResources().getString(R.string.retry),
+                    false);
+            mRetryDialog.setOnClickListener(new DialogBuilder.OnClickListener() {
+                @Override
+                public void onOkClick(Object object) {
+                    mRetryDialog.dismiss();
+                    onRetryConnectionOk();
+                }
+
+                @Override
+                public void onCancelClick() {
+
+                }
+            });
+
+            mRetryDialog.setOnDialogBackPress(
+                    () -> onRetryConnectionOk()
+            );
+            Helpers.showDialogFragment(getSupportFragmentManager(), mRetryDialog);
+        }
+    }
+
+    private void onRetryConnectionOk() {
+        if (NetworkUtils.hasConnection(SplashActivity.this)) {
+            doRequestConfiguration();
+        } else {
+            showRetryConnectionDialog();
+        }
+    }
+
+    @Override
+    protected void initData() {
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SplashViewModel.class);
+        customerViewModel = ViewModelProviders.of(this, viewModelFactory).get(CustomerViewModel.class);
+//        User user = Utils.getUser();
+//        if (!user.isEmpty()) {
+//            customerViewModel.getCustomerByEmail(user.getEmail(), user.getPass());
+//        } else {
+//            // saveQuestionInDB();
+//            loadQuestion();
+//        }
     }
 
     private void loadQuestion() {
